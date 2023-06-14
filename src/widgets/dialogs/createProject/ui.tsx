@@ -9,11 +9,17 @@ import { useProjectsStore } from 'entities/project/model';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { IProject } from 'entities/project/api';
 
 interface IProps {
   open: boolean;
   onClose: () => void;
 }
+
+const defaultValues: Omit<IProject, 'id'> = {
+  name: '',
+  description: '',
+};
 
 const schema = yup
   .object({
@@ -27,7 +33,9 @@ export const CreateProjectDialog = ({ open, onClose }: IProps) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
+    defaultValues,
     resolver: yupResolver(schema),
   });
 
@@ -35,6 +43,7 @@ export const CreateProjectDialog = ({ open, onClose }: IProps) => {
 
   const onSubmit = handleSubmit(async (data) => {
     await createProject(data);
+    reset(defaultValues);
     onClose();
   });
 

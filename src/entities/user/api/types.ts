@@ -1,3 +1,11 @@
+export enum Title {
+  Junior,
+  Middle,
+  Senior,
+  Lead,
+  Principal,
+}
+
 export interface IUser {
   id: string;
   name: string;
@@ -8,7 +16,7 @@ export interface IUserCreateDto {
 }
 
 export interface IUserUpdateDto {
-  name: string;
+  name?: string;
 }
 
 export interface IUserArgs {

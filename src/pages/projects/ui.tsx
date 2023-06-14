@@ -1,10 +1,11 @@
 import { CreateProjectPanel } from 'widgets/createProjectPanel';
+import { ProjectsList } from 'widgets/projectsList';
 
 const Projects = () => {
   return (
     <>
       <CreateProjectPanel />
-      <div>Projects</div>
+      <ProjectsList />
     </>
   );
 };

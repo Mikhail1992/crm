@@ -1,6 +1,11 @@
-import { Routing } from './routing';
+import { Suspense } from 'react';
 import './index.css';
+import Routing from 'pages/index';
 
 export const App = () => {
-  return <Routing />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routing />
+    </Suspense>
+  );
 };

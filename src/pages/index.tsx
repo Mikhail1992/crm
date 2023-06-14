@@ -1,10 +1,8 @@
-import { Suspense, lazy } from 'react';
+import { lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { BaseLayout } from './layouts/baseLouout';
+import { BaseLayout } from 'app/layouts/baseLouout';
 
 const Users = lazy(() => import('pages/users'));
-const User = lazy(() => import('pages/user'));
-const Project = lazy(() => import('pages/project'));
 const Projects = lazy(() => import('pages/projects'));
 const ActionsPanel = lazy(() => import('pages/actionsPanel'));
 const ErrorPage = lazy(() => import('pages/error'));
@@ -23,25 +21,15 @@ const router = createBrowserRouter([
         element: <Users />,
       },
       {
-        path: '/users/:id',
-        element: <User />,
-      },
-      {
         path: '/projects',
         element: <Projects />,
-      },
-      {
-        path: '/projects/:id',
-        element: <Project />,
       },
     ],
   },
 ]);
 
-export const Routing = () => {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <RouterProvider router={router} />
-    </Suspense>
-  );
+const Routing = () => {
+  return <RouterProvider router={router} />;
 };
+
+export default Routing;

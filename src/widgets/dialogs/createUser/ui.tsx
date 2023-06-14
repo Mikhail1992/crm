@@ -9,11 +9,16 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useUsersStore } from 'entities/user/model';
+import { IUser } from 'entities/user/api';
 
 interface IProps {
   open: boolean;
   onClose: () => void;
 }
+
+const defaultValues: Omit<IUser, 'id'> = {
+  name: '',
+};
 
 const schema = yup
   .object({
@@ -26,7 +31,9 @@ export const CreateUserDialog = ({ open, onClose }: IProps) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
+    defaultValues,
     resolver: yupResolver(schema),
   });
 
@@ -34,6 +41,7 @@ export const CreateUserDialog = ({ open, onClose }: IProps) => {
 
   const onSubmit = handleSubmit(async (data) => {
     await createUser(data);
+    reset(defaultValues);
     onClose();
   });
 
