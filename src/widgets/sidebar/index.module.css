@@ -1,0 +1,35 @@
+.container {
+  height: 100%;
+  background-color: var(--section-bg);
+  padding: 28px;
+}
+
+.logo {
+  display: inline-block;
+  letter-spacing: 0;
+  margin-bottom: 50px;
+}
+
+.menuItem {
+  display: block;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+.menuItem:hover,
+.menuItem:focus,
+.menuItem:active,
+.menuItemActive {
+  transition: 0.3s ease;
+  background-color: var(--primary);
+  color: white;
+}
+
+.asideMenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
